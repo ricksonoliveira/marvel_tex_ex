@@ -2,6 +2,7 @@ defmodule TenExTakeHomeWeb.CharactersLive do
   @moduledoc """
   LiveView for handling Characters page.
   """
+  alias TenExTakeHome.Timestamps.Repositories.SuccessfullTimestampRepository
   use TenExTakeHomeWeb, :live_view
 
   alias TenExTakeHome.Services.Api.MarvelService
@@ -23,9 +24,24 @@ defmodule TenExTakeHomeWeb.CharactersLive do
   defp fetch_characters_from_api(socket, page) do
     case MarvelService.fetch_characters(page) do
       {:ok, %{names: characters, total: total}} ->
-        assign(socket, characters: characters, page: page, per_page: 10, total: total, error: nil)
+        assign(socket,
+          characters: characters,
+          page: page,
+          per_page: 10,
+          total: total,
+          success_timestamp: get_successfull_timestamp(),
+          error: nil
+        )
+
       {:error, reason} ->
         assign(socket, characters: [], page: nil, per_page: nil, error: reason)
+    end
+  end
+
+  defp get_successfull_timestamp do
+    case SuccessfullTimestampRepository.get_latest_successfull_timestamps() do
+      st when not is_nil(st) -> st.success
+      nil -> ""
     end
   end
 

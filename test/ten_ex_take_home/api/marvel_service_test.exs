@@ -2,7 +2,8 @@ defmodule TenExTakeHome.Services.Api.MarvelServiceTest do
   @moduledoc """
   MarvelServiceTest
   """
-  use ExUnit.Case, async: true
+  use TenExTakeHome.DataCase, async: true
+
   import Mox
 
   alias TenExTakeHome.Services.Api.MarvelService

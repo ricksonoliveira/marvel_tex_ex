@@ -2,6 +2,7 @@ defmodule TenExTakeHome.Services.Api.MarvelService do
   @moduledoc """
   MarvelService wrapper for Marvel Api.
   """
+  alias TenExTakeHome.Timestamps.Repositories.SuccessfullTimestampRepository
   alias TenExTakeHome.HashGenerator
   @doc """
   Fetch characters name from Marvel API.
@@ -27,6 +28,7 @@ defmodule TenExTakeHome.Services.Api.MarvelService do
         when status_code >= 200 and status_code <= 299 ->
           characters_parsed = parse_characters(body)
           cache_client().save("marvel-characters:#{page}", characters_parsed)
+          SuccessfullTimestampRepository.create_successfull_timestamp(%{success: DateTime.utc_now()})
           {:ok, characters_parsed}
 
       {:ok, %HTTPoison.Response{body: body, status_code: _status_code}} ->
@@ -44,7 +46,7 @@ defmodule TenExTakeHome.Services.Api.MarvelService do
   defp build_url(timestamp, public_key, private_key, page) do
     hash = HashGenerator.generate_md5(timestamp, private_key, public_key)
 
-    "#{System.fetch_env!("MARVEL_CHARACTERS_URL")}?ts=#{timestamp}&apikey=#{public_key}&hash=#{hash}&limit=10&offset=#{page}"
+    "#{System.fetch_env!("MARVEL_CHARACTERS_URL")}?ts=#{timestamp}&apikey=#{public_key}&hash=#{hash}&limit=10&offset=#{page}" |> IO.inspect(label: :url)
   end
 
   defp parse_characters(body) do

@@ -16,6 +16,7 @@ defmodule TenExTakeHomeWeb.CharactersLiveTest do
 
       assert html =~ "Captain America" # Assert rendered characters
       assert html =~ "Spider-Man" # Assert rendered characters
+      assert html =~ "Last Successfull API call:"
     end
 
     defp mock_successfull_service_calls(_conn) do
