@@ -21,7 +21,7 @@ defmodule TenExTakeHome.Application do
       # Start the Endpoint (http/https)
       TenExTakeHomeWeb.Endpoint,
       # Starts redis server
-      {Redix, {redis_url, [name: :redis_server]}}
+      {Redix, {redis_url, [name: :redis_server, socket_opts: [:inet6]]}}
       # Start a worker by calling: TenExTakeHome.Worker.start_link(arg)
       # {TenExTakeHome.Worker, arg}
     ]
