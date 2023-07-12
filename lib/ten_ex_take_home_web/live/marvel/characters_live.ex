@@ -11,12 +11,12 @@ defmodule TenExTakeHomeWeb.CharactersLive do
   end
 
   def handle_event("previous_page", _, socket) do
-    new_page = socket.assigns.page - 1
+    new_page = socket.assigns.page - 10
     {:noreply, fetch_characters_from_api(socket, new_page)}
   end
 
   def handle_event("next_page", _, socket) do
-    new_page = socket.assigns.page + 1
+    new_page = socket.assigns.page + 10
     {:noreply, fetch_characters_from_api(socket, new_page)}
   end
 

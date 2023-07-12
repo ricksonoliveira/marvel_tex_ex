@@ -1,0 +1,22 @@
+{
+    "skip_files": [
+      "lib/ten_ex_take_hom/application.ex",
+      "lib/ten_ex_take_hom/release.ex",
+      "lib/ten_ex_take_hom_web.ex",
+      "lib/ten_ex_take_hom_web/views/error_helpers.ex",
+      "lib/ten_ex_take_hom_web/live/page_live.ex",
+      "test/support/channel_case.ex",
+      "test/support/appointments_fixture.ex",
+      "test/support/data_case.ex",
+      "lib/ten_ex_take_hom_web/telemetry.ex",
+      "lib/ten_ex_take_home_web/components/core_components.ex",
+      "lib/ten_ex_take_home/release.ex",
+      "lib/ten_ex_take_home/application.ex",
+      "lib/ten_ex_take_home_web/router.ex"
+    ],
+    "coverage_options": {
+      "treat_no_relevant_lines_as_covered": true,
+      "output_dir": "cover/",
+      "minimum_coverage": 95
+    }
+  }

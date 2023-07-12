@@ -9,7 +9,14 @@ defmodule TenExTakeHome.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -55,7 +62,8 @@ defmodule TenExTakeHome.MixProject do
       {:httpoison, "~> 2.0"},
       {:mox, "~> 1.0", only: :test},
       {:redix, "~> 1.1"},
-      {:castore, ">= 0.0.0"}
+      {:castore, ">= 0.0.0"},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 

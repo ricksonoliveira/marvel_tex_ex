@@ -1,7 +1,7 @@
 <%= if @error do %>
   <.error_placeholder/>
 <% else %>
-  <.table id="carachters" rows={@characters}>
+  <.table id="characters" rows={@characters}>
     <:col :let={character} label="Marvel characters names"><%= character %></:col>
   </.table>
 
