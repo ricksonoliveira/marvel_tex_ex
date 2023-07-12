@@ -14,9 +14,5 @@ config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: TenExTakeHome.Fi
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :ten_ex_take_home, :redis_config,
-  url: System.get_env("REDIS_URL") || "redis://localhost:6379",
-  socket_opts: [:inet6]
-
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.

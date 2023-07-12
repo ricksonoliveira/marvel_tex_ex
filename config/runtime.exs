@@ -63,10 +63,6 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
-  config :ten_ex_take_home, :redis_config,
-    url: System.get_env("REDIS_URL") || "redis://localhost:6379",
-    socket_opts: [:inet6]
-
   # ## SSL Support
   #
   # To get SSL working, you will need to add the `https` key
