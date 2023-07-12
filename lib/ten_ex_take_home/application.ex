@@ -7,6 +7,8 @@ defmodule TenExTakeHome.Application do
 
   @impl true
   def start(_type, _args) do
+    redis_url = Application.get_env(:ten_ex_take_home, :redis_config)[:url]
+
     children = [
       # Start the Telemetry supervisor
       TenExTakeHomeWeb.Telemetry,
@@ -17,7 +19,9 @@ defmodule TenExTakeHome.Application do
       # Start Finch
       {Finch, name: TenExTakeHome.Finch},
       # Start the Endpoint (http/https)
-      TenExTakeHomeWeb.Endpoint
+      TenExTakeHomeWeb.Endpoint,
+      # Starts redis server
+      {Redix, {redis_url, [name: :redis_server]}}
       # Start a worker by calling: TenExTakeHome.Worker.start_link(arg)
       # {TenExTakeHome.Worker, arg}
     ]

@@ -31,3 +31,7 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :ten_ex_take_home, :http_client, HTTPoison.Base
+
+config :ten_ex_take_home, :cache_client, TenExTakeHome.Behaviours.MarvelCharactersCacheBehaviour

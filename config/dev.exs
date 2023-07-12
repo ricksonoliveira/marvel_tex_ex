@@ -77,3 +77,7 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :ten_ex_take_home, :http_client, HTTPoison
+
+config :ten_ex_take_home, :cache_client, TenExTakeHome.Shared.Cache.MarvelCharactersCache

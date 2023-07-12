@@ -51,7 +51,11 @@ defmodule TenExTakeHome.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false}
+      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:httpoison, "~> 2.0"},
+      {:mox, "~> 1.0", only: :test},
+      {:redix, "~> 1.1"},
+      {:castore, ">= 0.0.0"}
     ]
   end
 

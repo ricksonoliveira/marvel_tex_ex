@@ -1,0 +1,16 @@
+<%= if @error do %>
+  <.error_placeholder/>
+<% else %>
+  <.table id="carachters" rows={@characters}>
+    <:col :let={character} label="Marvel characters names"><%= character %></:col>
+  </.table>
+
+ <div>
+    <%= if @page > 1 do %>
+      <.button phx-click="previous_page">Previous</.button>
+    <% end %>
+    <%= if (@page - 1) * @per_page + @per_page < @total do %>
+      <.button phx-click="next_page">Next</.button>
+    <% end %>
+  </div>
+<% end %>
