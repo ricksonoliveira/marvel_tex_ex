@@ -6,8 +6,8 @@ services:
     volumes_from:
       - pgdata
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: ten_ex
 
   pgdata:
