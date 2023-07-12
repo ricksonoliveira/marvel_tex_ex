@@ -46,7 +46,7 @@ defmodule TenExTakeHome.Services.Api.MarvelService do
   defp build_url(timestamp, public_key, private_key, page) do
     hash = HashGenerator.generate_md5(timestamp, private_key, public_key)
 
-    "#{System.fetch_env!("MARVEL_CHARACTERS_URL")}?ts=#{timestamp}&apikey=#{public_key}&hash=#{hash}&limit=10&offset=#{page}" |> IO.inspect(label: :url)
+    "#{System.fetch_env!("MARVEL_CHARACTERS_URL")}?ts=#{timestamp}&apikey=#{public_key}&hash=#{hash}&limit=10&offset=#{page}"
   end
 
   defp parse_characters(body) do
