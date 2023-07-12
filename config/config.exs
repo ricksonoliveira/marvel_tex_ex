@@ -64,7 +64,8 @@ config :phoenix, :json_library, Jason
 import_config "#{config_env()}.exs"
 
 config :ten_ex_take_home, :redis_config,
-  url: System.get_env("REDIS_URL") || "redis://localhost:6379"
+  url: System.get_env("REDIS_URL") || "redis://localhost:6379",
+  socket_opts: [:inet6]
 
   config :ten_ex_take_home, :http_client, HTTPoison
 
