@@ -65,3 +65,7 @@ import_config "#{config_env()}.exs"
 
 config :ten_ex_take_home, :redis_config,
   url: System.get_env("REDIS_URL") || "redis://localhost:6379"
+
+  config :ten_ex_take_home, :http_client, HTTPoison
+
+  config :ten_ex_take_home, :cache_client, TenExTakeHome.Shared.Cache.MarvelCharactersCache
