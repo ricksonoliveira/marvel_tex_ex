@@ -41,7 +41,7 @@ defmodule TenExTakeHomeWeb.CharactersLive do
   defp get_successfull_timestamp do
     case SuccessfullTimestampRepository.get_latest_successfull_timestamps() do
       st when not is_nil(st) ->
-        "#{format_digits(st.success.month)}/#{format_digits(st.success.day)}/#{st.success.year} #{st.success.hour}:#{st.success.minute}"
+        "#{format_digits(st.success.month)}/#{format_digits(st.success.day)}/#{st.success.year} #{format_digits(st.success.hour)}:#{format_digits(st.success.minute)}"
 
       nil ->
         ""
