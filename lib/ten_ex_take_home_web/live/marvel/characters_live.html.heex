@@ -4,7 +4,7 @@
   <.table id="characters" rows={@characters}>
     <:col :let={character} label="Marvel characters names"><%= character %></:col>
   </.table>
-  <.label>Last Successfull API call:<%= @success_timestamp %></.label>
+  <.label>Last Successfull API Call: <%= @success_timestamp %></.label>
 
   <div class="mt-3">
     <%= if @page > 1 do %>

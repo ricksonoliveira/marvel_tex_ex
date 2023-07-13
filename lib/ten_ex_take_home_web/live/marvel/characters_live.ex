@@ -40,8 +40,16 @@ defmodule TenExTakeHomeWeb.CharactersLive do
 
   defp get_successfull_timestamp do
     case SuccessfullTimestampRepository.get_latest_successfull_timestamps() do
-      st when not is_nil(st) -> st.success
-      nil -> ""
+      st when not is_nil(st) ->
+        with {:ok, timestamp} <- Date.new(st.success.year, st.success.month, st.success.day) do
+          [timestamp.month, timestamp.day, timestamp.year]
+          |> Enum.map(&to_string/1)
+          |> Enum.map(&String.pad_leading(&1, 2, "0"))
+          |> Enum.map_join("/", & &1)
+        end
+
+      nil ->
+        ""
     end
   end
 

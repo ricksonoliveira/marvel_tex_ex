@@ -61,8 +61,6 @@ defmodule TenExTakeHome.MixProject do
       {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false},
       {:httpoison, "~> 2.0"},
       {:mox, "~> 1.0", only: :test},
-      {:redix, "~> 1.1"},
-      {:castore, ">= 0.0.0"},
       {:excoveralls, "~> 0.10", only: :test}
     ]
   end

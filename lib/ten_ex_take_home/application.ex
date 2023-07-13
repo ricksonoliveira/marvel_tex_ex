@@ -2,12 +2,12 @@ defmodule TenExTakeHome.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
+  alias DoctorSchedule.Shared.Cache.Ets.CacheEts
 
   use Application
 
   @impl true
   def start(_type, _args) do
-    redis_url = Application.get_env(:ten_ex_take_home, :redis_config)[:url]
 
     children = [
       # Start the Telemetry supervisor
@@ -20,8 +20,7 @@ defmodule TenExTakeHome.Application do
       {Finch, name: TenExTakeHome.Finch},
       # Start the Endpoint (http/https)
       TenExTakeHomeWeb.Endpoint,
-      # Starts redis server
-      {Redix, {redis_url, [name: :redis_server]}}
+      build_cache_ets(:marvel)
       # Start a worker by calling: TenExTakeHome.Worker.start_link(arg)
       # {TenExTakeHome.Worker, arg}
     ]
@@ -31,6 +30,8 @@ defmodule TenExTakeHome.Application do
     opts = [strategy: :one_for_one, name: TenExTakeHome.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  defp build_cache_ets(name), do: %{id: name, start: {CacheEts, :start_link, [name]}}
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.

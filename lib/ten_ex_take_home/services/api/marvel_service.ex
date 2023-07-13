@@ -8,7 +8,7 @@ defmodule TenExTakeHome.Services.Api.MarvelService do
   Fetch characters name from Marvel API.
   """
   def fetch_characters(page \\ 1) do
-    case cache_client().fetch_characters("marvel-characters:#{page}") do
+    case cache_client().fetch_characters("characters:#{page}") do
       {:ok, characters} ->
         {:ok, characters}
 
@@ -27,7 +27,7 @@ defmodule TenExTakeHome.Services.Api.MarvelService do
       {:ok, %{body: body, status_code: status_code}}
         when status_code >= 200 and status_code <= 299 ->
           characters_parsed = parse_characters(body)
-          cache_client().save("marvel-characters:#{page}", characters_parsed)
+          cache_client().save("characters:#{page}", characters_parsed)
           SuccessfullTimestampRepository.create_successfull_timestamp(%{success: DateTime.utc_now()})
           {:ok, characters_parsed}
 
