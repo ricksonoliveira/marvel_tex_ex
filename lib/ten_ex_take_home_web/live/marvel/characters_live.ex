@@ -41,17 +41,14 @@ defmodule TenExTakeHomeWeb.CharactersLive do
   defp get_successfull_timestamp do
     case SuccessfullTimestampRepository.get_latest_successfull_timestamps() do
       st when not is_nil(st) ->
-        with {:ok, timestamp} <- Date.new(st.success.year, st.success.month, st.success.day) do
-          [timestamp.month, timestamp.day, timestamp.year]
-          |> Enum.map(&to_string/1)
-          |> Enum.map(&String.pad_leading(&1, 2, "0"))
-          |> Enum.map_join("/", & &1)
-        end
+        "#{format_digits(st.success.month)}/#{format_digits(st.success.day)}/#{st.success.year} #{st.success.hour}:#{st.success.minute}"
 
       nil ->
         ""
     end
   end
+
+  defp format_digits(digits), do: digits |> Integer.to_string() |> String.pad_leading(2, "0")
 
   defp error_placeholder(assigns) do
     ~H"""
